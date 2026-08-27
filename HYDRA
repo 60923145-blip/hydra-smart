@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Hydra Smart | Hidratación Inteligente</title>
+
+    <meta
+        name="description"
+        content="Hydra Smart: hidrátate mejor, personaliza tu botella y forma parte de Hydra Tribe."
+    >
+
+    <style>
+        /* =====================================================
+           1. VARIABLES Y CONFIGURACIÓN GENERAL
+        ====================================================== */
+
+        :root {
+            --aqua: #21c7c9;
+            --aqua-dark: #119fa5;
+            --aqua-light: #e9fbfb;
+
+            --charcoal: #263238;
+            --gray: #607078;
+            --light-gray: #f4f7f8;
+
+            --white: #ffffff;
+            --border: #dce7e9;
+
+            --radius: 18px;
+            --shadow: 0 8px 25px rgba(38, 50, 56, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            background: var(--light-gray);
+            color: var(--charcoal);
+            line-height: 1.5;
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           2. HEADER / NAVEGACIÓN
+        ====================================================== */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .navbar {
+            max-width: 900px;
+            margin: auto;
+
+            padding: 15px 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--charcoal);
+        }
+
+        .logo span {
+            color: var(--aqua-dark);
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--gray);
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* =====================================================
+           3. CONTENEDOR PRINCIPAL
+        ====================================================== */
+
+        main {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        section {
+            margin-bottom: 28px;
+            scroll-margin-top: 80px;
+        }
+
+        .section-title {
+            font-size: 1.55rem;
+            margin-bottom: 8px;
+        }
+
+        .section-description {
+            color: var(--gray);
+            margin-bottom: 18px;
+            font-size: 0.95rem;
+        }
+
+        /* =====================================================
+           4. HERO / BIENVENIDA
+        ====================================================== */
+
+        .hero {
+            background: var(--charcoal);
+            color: var(--white);
+
+            border-radius: 25px;
+
+            padding: 35px 25px;
+
+            position: relative;
+            overflow: hidden;
+
+            margin-bottom: 25px;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            border-radius: 50%;
+
+            background: var(--aqua);
+
+            right: -70px;
+            top: -70px;
+
+            opacity: 0.25;
+        }
+
+        .hero-badge {
+            display: inline-block;
+
+            background: rgba(33, 199, 201, 0.15);
+            color: var(--aqua);
+
+            padding: 6px 12px;
+            border-radius: 50px;
+
+            font-size: 0.78rem;
+            font-weight: 700;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 3.4rem);
+            line-height: 1.05;
+
+            max-width: 650px;
+
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--aqua);
+        }
+
+        .hero p {
+            color: #d7e1e3;
+            max-width: 600px;
+        }
+
+        /* =====================================================
+           5. TARJETAS
+        ====================================================== */
+
+        .card {
+            background: var(--white);
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            padding: 22px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        /* =====================================================
+           6. CALCULADORA
+        ====================================================== */
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+
+            font-size: 0.9rem;
+            font-weight: 700;
+
+            margin-bottom: 7px;
+        }
+
+        input,
+        select {
+            width: 100%;
+
+            padding: 14px;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            outline: none;
+
+            color: var(--charcoal);
+            background: var(--white);
+        }
+
+        input:focus,
+        select:focus {
+            border-color: var(--aqua);
+            box-shadow: 0 0 0 3px rgba(33, 199, 201, 0.12);
+        }
+
+        .primary-button {
+            width: 100%;
+
+            border: none;
+            border-radius: 12px;
+
+            padding: 14px 18px;
+
+            background: var(--aqua);
+            color: var(--charcoal);
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+        }
+
+        .primary-button:hover {
+            background: var(--aqua-dark);
+            color: var(--white);
+            transform: translateY(-1px);
+        }
+
+        /* =====================================================
+           7. RESULTADO HIDRATACIÓN
+        ====================================================== */
+
+        .hydration-result {
+            margin-top: 18px;
+
+            background: var(--aqua-light);
+
+            border-radius: 15px;
+
+            padding: 20px;
+
+            display: none;
+        }
+
+        .hydration-result.active {
+            display: block;
+        }
+
+        .result-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+
+            color: var(--aqua-dark);
+        }
+
+        .result-label {
+            color: var(--gray);
+            font-size: 0.88rem;
+        }
+
+        .fill-result {
+            margin-top: 12px;
+
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           8. RECORDATORIOS
+        ====================================================== */
+
+        .notification-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            padding: 20px;
+
+            box-shadow: var(--shadow);
+        }
+
+        .notification-icon {
+            min-width: 50px;
+            height: 50px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 50%;
+
+            background: var(--aqua-light);
+
+            font-size: 1.5rem;
+        }
+
+        .notification-content {
+            flex: 1;
+        }
+
+        .notification-content h3 {
+            font-size: 1rem;
+            margin-bottom: 3px;
+        }
+
+        .notification-content p {
+            color: var(--gray);
+            font-size: 0.82rem;
+        }
+
+        .small-button {
+            border: none;
+
+            background: var(--charcoal);
+            color: var(--white);
+
+            padding: 10px 14px;
+
+            border-radius: 10px;
+
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        /* =====================================================
+           9. RECETAS - HACKÉA TU AGUA
+        ====================================================== */
+
+        .recipe-card {
+            overflow: hidden;
+        }
+
+        .recipe-icon {
+            height: 90px;
+
+            display: grid;
+            place-items: center;
+
+            background: var(--aqua-light);
+
+            font-size: 2.5rem;
+
+            border-radius: 13px;
+
+            margin-bottom: 15px;
+        }
+
+        .recipe-card h3 {
+            margin-bottom: 7px;
+        }
+
+        .recipe-card p {
+            color: var(--gray);
+            font-size: 0.88rem;
+        }
+
+        .recipe-tag {
+            display: inline-block;
+
+            margin-top: 12px;
+
+            font-size: 0.75rem;
+            font-weight: 700;
+
+            color: var(--aqua-dark);
+        }
+
+        /* =====================================================
+           10. HYDRA TRIBE
+        ====================================================== */
+
+        .tribe {
+            background: var(--aqua);
+
+            color: var(--charcoal);
+
+            border-radius: 22px;
+
+            padding: 28px 22px;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tribe h2 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .tribe p {
+            max-width: 600px;
+            margin-bottom: 18px;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .cta-button {
+            display: inline-block;
+
+            text-align: center;
+            text-decoration: none;
+
+            padding: 13px 18px;
+
+            border-radius: 11px;
+
+            background: var(--charcoal);
+            color: var(--white);
+
+            font-weight: 800;
+
+            transition: 0.2s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            background: var(--white);
+            color: var(--charcoal);
+        }
+
+        /* =====================================================
+           11. ACORDEÓN GUÍA MODULAR
+        ====================================================== */
+
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .accordion-item {
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            border-radius: 14px;
+
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            width: 100%;
+
+            background: none;
+            border: none;
+
+            padding: 17px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            text-align: left;
+
+            color: var(--charcoal);
+
+            font-weight: 800;
+        }
+
+        .accordion-icon {
+            color: var(--aqua-dark);
+            font-size: 1.2rem;
+
+            transition: transform 0.2s ease;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+
+            padding: 0 17px;
+
+            color: var(--gray);
+
+            font-size: 0.9rem;
+
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 200px;
+            padding: 0 17px 17px;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(45deg);
+        }
+
+        /* =====================================================
+           12. FOOTER
+        ====================================================== */
+
+        footer {
+            text-align: center;
+
+            padding: 30px 20px;
+
+            color: var(--gray);
+
+            font-size: 0.8rem;
+        }
+
+        footer strong {
+            color: var(--aqua-dark);
+        }
+
+        /* =====================================================
+           13. RESPONSIVE
+        ====================================================== */
+
+        @media (min-width: 650px) {
+
+            main {
+                padding: 35px 25px;
+            }
+
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta-group {
+                flex-direction: row;
+            }
+
+            .cta-button {
+                min-width: 180px;
+            }
+
+            .notification-box {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                Hydra<span>Smart</span>
+            </div>
+
+            <a href="#tribe" class="nav-link">
+                Hydra Tribe →
+            </a>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!-- =================================================
+             SECCIÓN 1: BIENVENIDA + CALCULADORA
+        ================================================== -->
+
+        <section id="inicio">
+
+            <div class="hero">
+
+                <span class="hero-badge">
+                    💧 HIDRATACIÓN INTELIGENTE
+                </span>
+
+                <h1>
+                    Tu agua.
+                    <span>Tu ritmo.</span>
+                    Tu Hydra.
+                </h1>
+
+                <p>
+                    Descubre cuánto necesitas hidratarte cada día
+                    y convierte tu meta en pequeños pasos con Hydra Smart.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2 class="section-title">
+                    Calcula tu meta diaria
+                </h2>
+
+                <p class="section-description">
+                    Ingresa tus datos para obtener una recomendación
+                    orientativa de hidratación.
+                </p>
+
+
+                <form id="hydrationForm">
+
+                    <div class="form-group">
+
+                        <label for="weight">
+                            ¿Cuál es tu peso? (kg)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="weight"
+                            min="20"
+                            max="250"
+                            step="0.1"
+                            placeholder="Ej. 65"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="activity">
+                            Nivel de actividad
+                        </label>
+
+                        <select id="activity" required>
+
+                            <option value="">
+                                Selecciona una opción
+                            </option>
+
+                            <option value="0">
+                                Baja — poca actividad física
+                            </option>
+
+                            <option value="0.35">
+                                Moderada — actividad regular
+                            </option>
+
+                            <option value="0.70">
+                                Alta — ejercicio frecuente
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="primary-button"
+                    >
+                        Calcular mi hidratación 💧
+                    </button>
+
+                </form>
+
+
+                <div
+                    id="hydrationResult"
+                    class="hydration-result"
+                >
+
+                    <div class="result-label">
+                        Tu meta diaria aproximada
+                    </div>
+
+                    <div
+                        id="waterResult"
+                        class="result-number"
+                    >
+                        0 L
+                    </div>
+
+                    <div
+                        id="fillResult"
+                        class="fill-result"
+                    >
+                        0 llenados de Hydra Smart
+                    </div>
+
+                    <p
+                        style="
+                            margin-top:10px;
+                            font-size:0.75rem;
+                            color:#607078;
+                        "
+                    >
+                        *Estimación orientativa. Las necesidades reales
+                        pueden variar según clima, salud y actividad.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECCIÓN 2: RECORDATORIOS
+        ================================================== -->
+
+        <section id="recordatorios">
+
+            <h2 class="section-title">
+                No esperes a tener sed.
+            </h2>
+
+            <p class="section-description">
+                Activa recordatorios para convertir la hidratación
+                en un hábito durante tu día.
+            </p>
+
+
+            <div class="notification-box">
+
+                <div class="notification-icon">
+                    🔔
+                </div>
+
+                <div class="notification-content">
+
+                    <h3>
+                        Recordatorios Hydra
+                    </h3>
+
+                    <p id="notificationStatus">
+                        Recibe recordatorios desde tu navegador.
+                    </p>
+
+                </div>
+
+                <button
+                    id="notificationButton"
+                    class="small-button"
+                >
+                    Activar
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECCIÓN 2B: HACKEA TU AGUA
+        ================================================== -->
+
+        <section id="hackea">
+
+            <h2 class="section-title">
+                Hackea tu agua 🍋
+            </h2>
+
+            <p class="section-description">
+                Dale sabor a tu hidratación utilizando el infusor
+                modular de Hydra Smart.
+            </p>
+
+
+            <div class="grid">
+
+                <!-- Receta 1 -->
+
+                <article class="card recipe-card">
+
+                    <div class="recipe-icon">
+                        🍋
+                    </div>
+
+                    <h3>
+                        Limón + jengibre
+                    </h3>
+
+                    <p>
+                        Agrega rodajas de limón y pequeños trozos
+                        de jengibre al infusor. Déjalo reposar
+                        unos minutos para conseguir un sabor fresco.
+                    </p>
+
+                    <span class="recipe-tag">
+                        REFRESCANTE
+                    </span>
+
+                </article>
+
+
+                <!-- Receta 2 -->
+
+                <article class="card recipe-card">
+
+                    <div class="recipe-icon">
+                        🫐
+                    </div>
+
+                    <h3>
+                        Frutos rojos + menta
+                    </h3>
+
+                    <p>
+                        Combina frutos rojos con algunas hojas
+                        de menta dentro del infusor y agrega
+                        agua fría.
+                    </p>
+
+                    <span class="recipe-tag">
+                        FRESCO & FRUTAL
+                    </span>
+
+                </article>
+
+
+                <!-- Receta 3 -->
+
+                <article class="card recipe-card">
+
+                    <div class="recipe-icon">
+                        🍊
+                    </div>
+
+                    <h3>
+                        Naranja + hierbabuena
+                    </h3>
+
+                    <p>
+                        Añade rodajas de naranja y hierbabuena
+                        para crear una combinación cítrica
+                        y aromática.
+                    </p>
+
+                    <span class="recipe-tag">
+                        CÍTRICO
+                    </span>
+
+                </article>
+
+
+                <!-- Receta 4 -->
+
+                <article class="card recipe-card">
+
+                    <div class="recipe-icon">
+                        🍎
+                    </div>
+
+                    <h3>
+                        Manzana + canela
+                    </h3>
+
+                    <p>
+                        Coloca unas láminas de manzana y una
+                        pequeña cantidad de canela en el infusor.
+                    </p>
+
+                    <span class="recipe-tag">
+                        NATURAL
+                    </span>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECCIÓN 3: HYDRA TRIBE
+        ================================================== -->
+
+        <section id="tribe">
+
+            <div class="tribe">
+
+                <h2>
+                    Bienvenido a Hydra Tribe.
+                </h2>
+
+                <p>
+                    Comparte tus hábitos, descubre nuevas formas
+                    de hidratarte y forma parte de una comunidad
+                    que busca convertir el bienestar en un hábito.
+                </p>
+
+
+                <div class="cta-group">
+
+                    <a
+                        href="#"
+                        class="cta-button"
+                        id="joinCommunity"
+                    >
+                        Unirme a Hydra Tribe
+                    </a>
+
+                    <a
+                        href="#guia"
+                        class="cta-button cta-secondary"
+                    >
+                        Ver guía modular
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SECCIÓN 3B: GUÍA MODULAR
+        ================================================== -->
+
+        <section id="guia">
+
+            <h2 class="section-title">
+                Guía modular
+            </h2>
+
+            <p class="section-description">
+                Personaliza Hydra Smart de acuerdo con tu rutina.
+                Sus compartimentos están diseñados para ser
+                prácticos y libres de BPA.
+            </p>
+
+
+            <div class="accordion">
+
+
+                <!-- Paso 1 -->
+
+                <div class="accordion-item">
+
+                    <button class="accordion-header">
+
+                        <span>
+                            01 · Selecciona tu módulo
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="accordion-content">
+
+                        <p>
+                            Elige el compartimento modular que
+                            necesites para tu rutina. Puedes utilizar
+                            el espacio destinado al infusor u otros
+                            módulos compatibles con el sistema Hydra Smart.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Paso 2 -->
+
+                <div class="accordion-item">
+
+                    <button class="accordion-header">
+
+                        <span>
+                            02 · Ensambla
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="accordion-content">
+
+                        <p>
+                            Alinea correctamente las piezas y
+                            asegúrate de que cada módulo quede
+                            firmemente colocado antes de utilizar
+                            la botella.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Paso 3 -->
+
+                <div class="accordion-item">
+
+                    <button class="accordion-header">
+
+                        <span>
+                            03 · Personaliza
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="accordion-content">
+
+                        <p>
+                            Combina los módulos según tu actividad:
+                            hidratación diaria, infusión de frutas
+                            o diferentes necesidades de organización.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Paso 4 -->
+
+                <div class="accordion-item">
+
+                    <button class="accordion-header">
+
+                        <span>
+                            04 · Limpia y cuida
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="accordion-content">
+
+                        <p>
+                            Lava los compartimentos después de cada
+                            uso, especialmente después de utilizar
+                            frutas o hierbas. Déjalos secar completamente
+                            antes de volver a ensamblarlos.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Paso 5 -->
+
+                <div class="accordion-item">
+
+                    <button class="accordion-header">
+
+                        <span>
+                            05 · Disfruta tu Hydra
+                        </span>
+
+                        <span class="accordion-icon">
+                            +
+                        </span>
+
+                    </button>
+
+                    <div class="accordion-content">
+
+                        <p>
+                            Llena tu botella, lleva contigo tu Hydra
+                            Smart y sigue tu meta de hidratación durante
+                            el día.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer>
+
+        <p>
+            <strong>Hydra Smart</strong>
+            · Hidratación inteligente para tu día.
+        </p>
+
+        <p style="margin-top:5px;">
+            © 2026 Hydra Smart
+        </p>
+
+    </footer>
+
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
+    <script>
+
+        /* =================================================
+           CONFIGURACIÓN
+        ================================================== */
+
+        // Capacidad propuesta para Hydra Smart:
+        // 750 ml = 0.75 litros
+
+        const BOTTLE_CAPACITY_LITERS = 0.75;
+
+
+        /* =================================================
+           1. CALCULADORA DE HIDRATACIÓN
+        ================================================== */
+
+        const hydrationForm =
+            document.getElementById("hydrationForm");
+
+        const hydrationResult =
+            document.getElementById("hydrationResult");
+
+        const waterResult =
+            document.getElementById("waterResult");
+
+        const fillResult =
+            document.getElementById("fillResult");
+
+
+        hydrationForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+
+            // Obtener datos
+
+            const weight =
+                parseFloat(
+                    document.getElementById("weight").value
+                );
+
+            const activity =
+                parseFloat(
+                    document.getElementById("activity").value
+                );
+
+
+            // Validación
+
+            if (
+                isNaN(weight) ||
+                weight <= 0 ||
+                isNaN(activity)
+            ) {
+
+                alert(
+                    "Por favor, completa correctamente tus datos."
+                );
+
+                return;
+            }
+
+
+            /*
+             * Fórmula orientativa:
+             *
+             * 35 ml de agua por cada kg de peso
+             *
+             * + ajuste según nivel de actividad.
+             *
+             * El resultado se convierte a litros.
+             */
+
+            const baseWater =
+                weight * 0.035;
+
+            const dailyWater =
+                baseWater + activity;
+
+
+            // Calcular cantidad de llenados
+
+            const bottleFills =
+                dailyWater / BOTTLE_CAPACITY_LITERS;
+
+
+            // Redondear resultados
+
+            const roundedWater =
+                dailyWater.toFixed(2);
+
+            const roundedFills =
+                Math.ceil(bottleFills);
+
+
+            // Mostrar resultados
+
+            waterResult.textContent =
+                `${roundedWater} L`;
+
+            fillResult.textContent =
+                `≈ ${roundedFills} llenados de Hydra Smart de 750 ml`;
+
+
+            hydrationResult.classList.add("active");
+
+        });
+
+
+        /* =================================================
+           2. NOTIFICACIONES DEL NAVEGADOR
+        ================================================== */
+
+        const notificationButton =
+            document.getElementById("notificationButton");
+
+        const notificationStatus =
+            document.getElementById("notificationStatus");
+
+
+        notificationButton.addEventListener(
+            "click",
+            async function() {
+
+                // Verificar compatibilidad
+
+                if (!("Notification" in window)) {
+
+                    notificationStatus.textContent =
+                        "Tu navegador no admite notificaciones.";
+
+                    return;
+                }
+
+
+                try {
+
+                    const permission =
+                        await Notification.requestPermission();
+
+
+                    if (permission === "granted") {
+
+                        notificationStatus.textContent =
+                            "¡Recordatorios activados! 💧";
+
+                        notificationButton.textContent =
+                            "Activado";
+
+                        notificationButton.disabled =
+                            true;
+
+
+                        // Notificación de prueba
+
+                        new Notification(
+                            "Hydra Smart 💧",
+                            {
+                                body:
+                                    "¡Es momento de hidratarte!"
+                            }
+                        );
+
+                    }
+
+                    else if (permission === "denied") {
+
+                        notificationStatus.textContent =
+                            "Las notificaciones están bloqueadas en tu navegador.";
+
+                    }
+
+                    else {
+
+                        notificationStatus.textContent =
+                            "Puedes activar los recordatorios cuando quieras.";
+
+                    }
+
+                }
+
+                catch (error) {
+
+                    notificationStatus.textContent =
+                        "No fue posible activar las notificaciones.";
+
+                    console.error(error);
+
+                }
+
+            }
+        );
+
+
+        /* =================================================
+           3. ACORDEÓN GUÍA MODULAR
+        ================================================== */
+
+        const accordionHeaders =
+            document.querySelectorAll(
+                ".accordion-header"
+            );
+
+
+        accordionHeaders.forEach(function(header) {
+
+            header.addEventListener(
+                "click",
+                function() {
+
+                    const item =
+                        header.parentElement;
+
+
+                    // Cerrar otros elementos
+
+                    document
+                        .querySelectorAll(".accordion-item")
+                        .forEach(function(otherItem) {
+
+                            if (otherItem !== item) {
+
+                                otherItem.classList.remove(
+                                    "active"
+                                );
+
+                            }
+
+                        });
+
+
+                    // Abrir/cerrar actual
+
+                    item.classList.toggle("active");
+
+                }
+            );
+
+        });
+
+
+        /* =================================================
+           4. CTA HYDRA TRIBE
+        ================================================== */
+
+        const joinCommunity =
+            document.getElementById("joinCommunity");
+
+
+        joinCommunity.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+
+                alert(
+                    "¡Bienvenido a Hydra Tribe! 💧"
+                );
+
+            }
+        );
+
+
+        /* =================================================
+           5. MENSAJE INICIAL EN CONSOLA
+        ================================================== */
+
+        console.log(
+            "Hydra Smart Web App iniciada correctamente."
+        );
+
+    </script>
+
+</body>
+</html>
